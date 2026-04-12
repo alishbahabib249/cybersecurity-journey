@@ -1,0 +1,185 @@
+# Day 1[12/4/2026] — Networking Basics and ICMP
+
+## What I Learned
+Today I learned the basics of how devices communicate over a network. 
+I understood how ping works, what ICMP is, how packets travel, 
+and how tools like traceroute help in identifying network paths.
+
+## Ping
+Ping is a command used to check whether a device is reachable
+over a network. It sends ICMP packets and measures the response time.
+
+
+## ICMP (Internet Control Message Protocol)
+ICMP is used for sending error messages and network diagnostics. The ping command uses ICMP to communicate between devices.
+
+
+## Latency
+Latency is the time it takes for a packet to go from my system to the destination and back. It is measured in milliseconds (ms).
+
+
+## Packet Loss
+Packet loss happens when some data packets do not reach the destination. This can indicate network issues or instability.
+
+
+## TTL (Time To Live)
+TTL defines how many hops a packet can take before it is discarded.
+
+Typical values:
+Linux and Android: 64  
+Windows: 128  
+Cisco devices: 255  
+
+
+## Packet
+A packet is a small unit of data sent over a network.
+
+It has two main parts:
+Header (contains routing information)  
+Payload (actual data being sent)  
+
+
+## Hops
+Hops represent the number of routers a packet passes through before reaching its destination.
+
+Example:
+If TTL starts at 128 and arrives as 115, then:
+128 - 115 = 13 hops
+
+
+## Traceroute (tracert)
+Traceroute is used to see the path packets take to reach a destination.
+
+If some hops show:
+* * *
+it means that device is not responding.
+
+Possible reasons:
+- Firewall blocking ICMP
+- Device configured not to respond
+- Network filtering
+
+This helps in understanding network structure and possible restrictions.
+
+
+## Ping Sweep
+A technique used to find active devices in a network by sending ping requests to multiple IP addresses.
+
+---
+
+## Public vs Private IP
+Public IP is accessible over the internet.  
+Private IP is used inside a local network.
+
+---
+
+## NAT (Network Address Translation)
+NAT allows multiple devices in a private network to share a single public IP address.
+
+---
+
+## Firewall
+A firewall controls incoming and outgoing network traffic based on security rules.
+
+---
+
+## IPv4 and IPv6
+IPv4 is the older version with limited addresses.  
+IPv6 is the newer version with a much larger address space.
+
+---
+
+## DDoS (Distributed Denial of Service)
+An attack where multiple systems send large amounts of traffic to a target to make it unavailable.
+
+---
+
+## Ping of Death
+An old attack where oversized packets were sent to crash systems. It is mostly fixed in modern systems.
+
+---
+
+## Banner Grabbing
+A method used to collect information about a service, such as its version.
+- Find open port 
+- grab banner 
+- check version
+- search vulnerability 
+
+---
+
+## ACL (Access Control List)
+ACLs define rules that allow or deny network traffic.
+
+---
+
+## Switching
+Switching is the process of forwarding data within a local network using switches.
+
+---
+
+## Misconfiguration
+Misconfiguration means incorrect or weak setup of systems, which can lead to security vulnerabilities.
+
+---
+
+## Practical Work I Did
+I used basic networking commands to understand how things work in real time.
+
+Commands I ran:
+
+ping google.com
+
+tracert google.com
+
+---
+
+## What I Observed
+While using ping, I saw response times and TTL values.
+
+While using traceroute, I saw multiple hops between my system and the destination. 
+Some hops did not respond, which showed how filtering or firewalls can affect visibility in a network.
+
+---
+
+## What I Still Need to Understand
+I want to understand more clearly the difference between ICMP filtering and port-based filtering,
+and how attackers use this information during reconnaissance.
+
+
+## How Packets Travel
+Data does not move as a single piece. It is broken into packets,
+and each packet may take different paths through the network to reach the destination, 
+where they are reassembled.
+
+---
+## Why This Matters in Penetration Testing
+
+In penetration testing, understanding networking is essential because it helps
+in reconnaissance[econ: gathering all the important info about the target] and identifying potential entry points.
+
+An attacker uses this knowledge to:
+
+- Discover active devices in a network using techniques like ping sweep  
+- Identify how far a target is and how many hops away it is  
+- Understand how packets move and where they might be filtered or blocked  
+- Detect the presence of firewalls or filtering based on missing responses  
+- Analyze latency and packet behavior to understand network conditions  
+- Use tools to map the structure of a network before attempting exploitation  
+
+This information helps in building a clear picture of the target environment and deciding the next steps in an attack.
+---
+
+## ICMP Misuse (Hidden Data)
+ICMP packets (used in ping) can sometimes be misused to hide or transfer data secretly. 
+This is known as a covert channel and can be used by attackers to bypass security controls.
+
+---
+
+## Traceroute Behavior (Clarified)
+While using traceroute:
+
+- Normal responses mean the packet is moving through routers
+- No response (* * *) may indicate filtering or firewall restrictions
+
+This does not directly mean a port is blocked, but it shows that traffic is being controlled at some point in the network.
