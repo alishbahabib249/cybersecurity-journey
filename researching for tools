@@ -1,0 +1,65 @@
+///Hacking is a process with different stages:
+
+1: Information Gathering (Recon): Collect basic data like ports, domains, 
+and services before attacking. Skipping this leads to failure.
+
+2: Scanning & Enumeration: Go deeper to find vulnerabilities and system details, but beginners often don’t understand the results.
+
+3: Exploitation: Use tools to attack known weaknesses—but without proper recon, these tools won’t work.
+
+4: Password Attacks: Target weak passwords, but strong ones can’t be easily broken.
+
+5: Web Testing: Analyze and manipulate website requests to find flaws.
+
+6: Wireless Attacks: Try to crack Wi-Fi, but modern security makes it difficult.
+
+7: Post-Exploitation: Maintain access and move inside the system after hacking.
+
+8: Reverse Engineering: Advanced level—analyzing code and malware.
+
+1.Information Gathering (Recon)
+Nmap
+theHarvester
+Wireshark
+Purpose: Find open ports, services, emails, domains.
+
+2. Scanning & Enumeration
+Nmap
+Nikto
+Gobuster
+enum4linux
+Purpose: Discover hidden directories, vulnerabilities, detailed system info.
+
+3.Exploitation
+Metasploit
+BeEF
+SQLmap
+ Purpose: Exploit vulnerabilities and gain access.
+
+4.Password Attacks
+Hydra
+John the Ripper
+Hashcat
+ Purpose: Crack weak passwords using brute force or dictionaries.
+
+5. Web Application Testing
+Burp Suite
+OWASP ZAP
+(Likely) Nikto / similar tools
+ Purpose: Intercept and modify web requests to find vulnerabilities.
+
+6. Wireless Attacks
+Aircrack-ng
+WiFi tools (like WiFite / similar mentioned)
+Purpose: Capture handshakes and crack Wi-Fi passwords.
+
+7.Post-Exploitation
+Mimikatz
+PowerSploit
+BloodHound
+Purpose: Extract credentials, maintain access, move inside network.
+
+8. Reverse Engineering / Malware Analysis
+Ghidra
+IDA Pro (likely what “pro” referred to)
+Purpose: Analyze malware and understand code.
