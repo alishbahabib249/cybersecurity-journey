@@ -1,0 +1,173 @@
+ What I Learned Today: OSI Model, TCP/UDP, and How Data Actually Travels
+
+Today I finally sat down and properly understood how data moves in a network.
+Before this, terms like OSI model, TCP, UDP, headers — everything felt disconnected and confusing.
+But now it actually makes sense as one flow.
+
+
+##  OSI Model (7 Layers)
+So basically, the OSI model is just a way to break down how communication happens between two systems into 7 steps.
+From top to bottom:
+
+1. Application Layer
+   - This is where I (user) interact with apps like browser, WhatsApp, etc.
+
+2. Presentation Layer
+   - Converts data format (like text → binary)
+   - Handles encryption (like HTTPS)
+
+3. Session Layer
+   - Starts and manages the connection/session
+
+4. Transport Layer
+   - This is where things get important:
+   - Data is broken into smaller pieces
+   - TCP or UDP is used here
+
+5. Network Layer
+   - Adds IP address
+   - Decides where the data should go
+
+6. Data Link Layer
+   - Uses MAC address for local delivery
+
+7. Physical Layer
+   - Actual transmission (signals, wires, WiFi)
+
+##  How Data Actually Travels (Encapsulation)
+
+This part made everything click for me.
+
+When sending data:
+
+- First, I write something (like "hello")
+- Then each layer adds its own header (extra info)
+
+Flow:
+Data → TCP/UDP Header → IP Header → MAC → Sent as signals
+
+Just like any parcel needs information like source and destination address sender and receiever name etc.
+
+---  What is a Header?
+
+A header is basically extra information attached to the data so it can be delivered properly.
+
+Without headers:
+- No destination
+- No order
+- No idea which app it belongs to
+
+It’s like sending a parcel without an address — impossible.
+
+---
+
+##  IP Header (Network Layer)
+
+This tells:
+- Source IP (who sent it)
+- Destination IP (where it should go)
+
+So this is basically the "address" of the data.
+
+---
+
+## 🚚 TCP vs UDP (Transport Layer)
+
+This is something I used to mix up a lot.
+
+### 🟢 TCP (Transmission Control Protocol)
+- Reliable
+- Slower
+- Connection-based
+
+Features:
+- Ensures data arrives
+- Keeps data in order
+- Error checking
+- Uses acknowledgements
+
+Used in:
+- Websites (HTTP/HTTPS)
+- Messaging
+
+---
+
+### 🔴 UDP (User Datagram Protocol)
+- Fast
+- No guarantee
+- No connection
+
+Features:
+- No checking
+- No ordering
+- Just sends data
+
+Used in:
+- Streaming
+- Online games
+- Calls
+
+---
+
+## 🤔 Why Both IP and TCP Headers?
+
+Because they do different jobs:
+
+- IP → WHERE to send data
+- TCP → HOW to send it reliably
+
+So both are needed together.
+
+---
+
+## 🔓 Decapsulation (Receiving Side)
+
+At the destination:
+- Headers are removed one by one
+- Original data is recovered
+
+Basically like opening a parcel layer by layer.
+
+---
+
+## 🧑‍💻 How This Connects to Cybersecurity / Pentesting
+
+This part made it even more interesting.
+
+### 🔍 Port Scanning
+- Done using tools like Nmap
+- Uses TCP/UDP to check open ports
+- Helps identify services running on a system
+
+---
+
+### 🌐 IP Analysis
+- Used in reconnaissance
+- Finding targets, tracking systems
+
+---
+
+### 📡 Packet Sniffing
+- Tools like Wireshark
+- Can see headers and sometimes actual data
+- Helps understand what’s happening inside a network
+
+---
+
+### 🔥 Attacks Based on This Knowledge
+
+- TCP SYN Flood → exploits TCP handshake
+- IP Spoofing → fake IP address
+- Man-in-the-Middle → intercept communication
+
+---
+## Conclusion
+
+Before today, networking felt like random terminology.
+Now it feels like a proper system where each layer has a role, 
+and everything connects together. Still need practice, 
+but at least now I understand what’s actually happening behind the scenes when I send data.
+
+---
+
+(Will revise this again later to make sure it sticks
