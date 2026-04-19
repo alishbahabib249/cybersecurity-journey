@@ -1,0 +1,214 @@
+Today I focused on basic Linux commands. At first it felt like just memorizing commands, 
+but after practicing a bit, I started understanding how everything connects —
+especially from a cybersecurity perspective.
+
+🧠 Basic Commands I Learned
+
+echo
+
+Prints output to the terminal.
+
+echo hello
+
+Also used to write into files:
+echo “text” > file.txt
+
+⸻
+
+whoami
+
+Tells me which user I am currently logged in as.
+
+whoami
+
+⸻
+
+ls
+
+Lists files and directories.
+
+ls
+ls -la   (shows hidden files and details)
+
+⸻
+
+cd
+
+Used to navigate between directories.
+
+cd foldername
+cd ..   (go back)
+
+⸻
+
+cat
+
+Displays file content.
+
+cat file.txt
+
+⸻
+
+pwd
+
+Shows current directory path.
+
+pwd
+
+(I initially confused this as “pdw” but it’s pwd)
+
+⸻
+
+find
+
+Used to search for files.
+
+find / -name file.txt
+
+⸻
+
+grep
+
+Searches for specific text inside files.
+
+grep “word” file.txt
+
+⸻
+
+Recursive grep
+
+grep -r “word” .
+
+Searches in all files inside a directory.
+
+⸻
+
+## Shell Operators
+
+AND operator (&&)
+
+Runs second command only if first is successful.
+
+mkdir test && cd test
+
+⸻
+
+> (overwrite)
+
+Writes output to a file (overwrites existing content).
+
+echo hello > file.txt
+
+⸻
+
+>> (append)
+
+Adds output to file without removing existing content.
+
+echo world >> file.txt
+
+⸻
+
+## User & Privileges
+
+id
+
+Shows user ID, group ID, and privileges.
+
+id
+
+⸻
+
+sudo
+
+Runs command with elevated privileges (as root).
+
+sudo apt update
+
+⸻
+
+Root User
+
+Root = highest privilege user in Linux.
+
+What root can do:
+
+* Access all files
+* Install/remove anything
+* Modify system settings
+* Control other users
+
+⸻
+
+How to check if I am root
+
+whoami
+
+If output is:
+root
+
+Then I have full privileges.
+
+Or:
+
+id
+
+If UID = 0 → root user
+
+⸻
+
+##  How This Connects to Penetration Testing
+
+File Discovery
+
+* ls, find → locating important files
+* Useful for finding configs, passwords, hidden files
+
+⸻
+
+Reading Sensitive Data
+
+* cat → reading files like config files, logs, credentials
+
+⸻
+
+Searching Data
+
+* grep → finding keywords like password, admin, token
+
+⸻
+
+Privilege Escalation
+
+* Checking user with whoami
+* Using sudo to gain higher privileges
+* Goal is often to become root
+
+⸻
+
+Command Chaining
+
+* Using && to execute multiple steps efficiently
+* Helpful in automation during attacks
+
+⸻
+
+ My Understanding
+
+* Linux commands are not just commands — they are tools
+* Each command helps in exploring, reading, or controlling the system
+* Access level (user vs root) changes everything
+* learning about privelage e
+
+⸻
+##Conclusion:
+
+Before this, Linux felt intimidating and random.
+
+Now I see it more like:
+
+* A system I can navigate
+* A structure I can explore
+* A core skill for cybersecurity
+
+Still beginner level, but this feels like a strong foundation
