@@ -1,0 +1,85 @@
+ Linux Processes – Beginner Notes
+🔹 What is a Process?
+A process is simply a program that is currently running on a system.
+
+Example:
+Running ls → creates a process
+Running a Python script → creates a process
+
+ Program = file
+Process = program in execution
+
+🔹 Process ID (PID)
+
+Each process is assigned a unique number called a PID (Process ID).
+
+Used to identify and manage processes
+PIDs increment as new processes are created
+🔹 Viewing Processes
+1. View current user processes:
+ps
+2. View all processes (system + users):
+ps aux
+3. Real-time monitoring:
+top
+Shows CPU usage, memory usage, and active processes
+Updates dynamically
+
+💡 ps = snapshot
+💡 top = live monitoring
+
+🔹 Managing Processes
+Kill a process:
+kill <PID>
+Common Signals:
+SIGTERM → Graceful termination (recommended)
+SIGKILL → Force kill (no cleanup)
+SIGSTOP → Pause process
+🔹 Process Hierarchy
+The system starts with a parent process (like systemd)
+All other processes are child processes
+systemd
+ ├── ssh
+ ├── apache
+ └── user commands
+
+💡 Every process has a parent-child relationship
+
+🔹 Starting Services (systemctl)
+
+Command format:
+
+systemctl [option] [service]
+
+Examples:
+
+systemctl start apache2
+systemctl stop apache2
+systemctl enable apache2
+systemctl disable apache2
+start → run service now
+stop → stop service
+enable → start at boot
+disable → prevent auto-start
+🔹 Foreground vs Background Processes
+Foreground:
+
+Runs in terminal and shows output
+
+echo "Hello"
+Background:
+
+Runs without blocking terminal
+
+echo "Hello" &
+Send process to background:
+Ctrl + Z
+Bring back to foreground:
+fg
+🔹 Key Takeaways
+Process = running program
+PID = unique identifier
+Use ps, ps aux, top to monitor
+Use kill to terminate
+Use systemctl to manage services
+Use &, fg, Ctrl+Z for process control
