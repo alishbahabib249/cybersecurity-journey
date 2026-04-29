@@ -1,0 +1,238 @@
+🧠 ACTIVE DIRECTORY (AD) — QUICK REVISION NOTES
+🏢 1. Windows Domain Basics
+Active Directory (AD) = Central database that stores:
+Users, passwords, emails, permissions
+Domain Controller (DC) = Server that runs AD
+
+👉 Purpose:
+
+Manage all users & computers from one place
+Avoid manual setup on every machine
+✅ Advantages
+Centralized user management
+Centralized security policies (GPOs)
+Same login works across all systems
+
+👉 Example:
+
+One login works on all university computers
+
+🧱 2. AD Core: AD DS
+Active Directory Domain Services (AD DS) = Core service of AD
+Stores all objects in the network:
+Users, computers, groups, printers, etc.
+
+👤 3. Objects in AD
+🔹 Users
+Security principals (can authenticate + get permissions)
+
+Types:
+
+Normal users → employees
+Service accounts → run services (IIS, MSSQL)
+💻 Machines (Computer Accounts)
+Every domain computer = account
+Naming format: COMPUTERNAME$
+
+Key points:
+
+Auto-generated password (~120 random chars)
+Password rotates automatically
+Acts as local admin on its own machine
+👥 Security Groups
+Used to assign permissions to multiple users
+
+👉 Instead of giving access individually, assign to group
+
+Important Groups:
+Domain Admins → full control
+Server Operators → manage DCs
+Backup Operators → access all files
+Account Operators → manage accounts
+Domain Users → all users
+Domain Computers → all machines
+
+🗂️ 4. Organizational Units (OUs)
+Containers used to organize users/computers
+Usually based on departments (IT, HR, Sales)
+
+👉 Purpose:
+
+Apply policies (GPOs)
+
+⚠️ Rules:
+
+User → only in ONE OU
+User → can be in MULTIPLE groups
+🔥 OU vs Groups
+Feature	OU	Group
+Purpose	Apply policies	Give permissions
+Membership	One OU	Multiple groups
+Use case	Departments	Resource access
+
+🛠️ 5. Managing AD
+Tool:
+Active Directory Users & Computers
+
+You can:
+
+Create/delete users
+Reset passwords
+Organize OUs
+Default Containers:
+Builtin → default groups
+Users → default users
+Computers → new machines
+Domain Controllers → DCs
+Managed Service Accounts → service accounts
+
+🔑 6. Delegation
+Giving limited control to users
+
+👉 Example:
+
+IT support can reset passwords
+
+Key idea:
+
+Avoid giving full admin access
+Give only required permissions
+
+💻 7. Managing Computers
+
+Best practice:
+
+Separate OUs for:
+Workstations
+Servers
+
+📜 8. Group Policy (GPO)
+Used to apply configurations to:
+Users
+Computers
+
+Examples:
+
+Disable control panel
+Enforce password rules
+
+Stored in:
+
+SYSVOL share
+
+🔐 9. Authentication
+🟢 Kerberos (Default)
+
+Uses ticket-based system:
+
+User logs in → gets TGT
+Uses TGT → requests TGS
+Uses TGS → accesses service
+
+Key points:
+
+No repeated password sending
+TGT encrypted with krbtgt hash
+Uses session keys
+🔴 NetNTLM (Legacy)
+
+Uses challenge-response:
+
+Server sends challenge
+Client responds using password hash
+DC verifies
+
+Key points:
+
+Password not sent over network
+Less secure than Kerberos
+
+🌳 10. Trees, Forests, Trusts
+🌳 Tree
+Multiple domains with same namespace
+
+Example:
+
+thm.local
+uk.thm.local
+us.thm.local
+🌲 Forest
+Multiple trees with different namespaces
+
+Example:
+
+thm.local + mht.com
+🔗 Trust Relationships
+
+Allows users from one domain to access another
+
+Types:
+One-way trust
+A trusts B → B users access A
+Two-way trust
+Both domains trust each other
+
+Key point:
+
+Trust does NOT mean full access
+Permissions still controlled manually
+⚔️ 11. How This Is Used in Pentesting / Red Team
+
+This is where everything becomes powerful 👇
+
+🔍 1. User & Group Enumeration
+Find:
+Domain Admins
+Privileged groups
+Goal → privilege escalation
+🔑 2. Password Attacks
+Target:
+Weak passwords
+Service accounts
+
+Common attacks:
+
+Password spraying
+Credential stuffing
+🎟️ 3. Kerberos Attacks
+Kerberoasting → crack service tickets
+Pass-the-Ticket → reuse stolen tickets
+Golden Ticket → full domain control (using krbtgt hash)
+⚡ 4. NetNTLM Attacks
+Capture hashes (LLMNR/NBT-NS poisoning)
+Relay attacks
+
+👉 Easier to exploit than Kerberos
+
+🧑‍💻 5. Delegation Abuse
+Misconfigured delegation = privilege escalation
+Can reset passwords or control accounts
+🏢 6. GPO Abuse
+Modify GPO → run malicious scripts
+Gain control over many machines
+💻 7. Machine Account Abuse
+Extract machine credentials
+Move laterally across network
+🔗 8. Trust Exploitation
+Abuse trust relationships
+Move between domains (lateral movement)
+🧠 9. Lateral Movement
+Use stolen credentials/tickets
+Access:
+Other machines
+Servers
+Domain Controller
+🎯 Main Red Team Goal in AD
+Reach Domain Admin
+Control entire domain
+🧠 FINAL MEMORY CHEAT
+AD = central control
+DC = runs AD
+OU = policies
+Groups = permissions
+Kerberos = tickets 🎟️
+NetNTLM = challenge ❓
+Tree = same domain structure
+Forest = multiple domains
+Trust = cross-domain access
+Red Team goal = Domain Admin access
