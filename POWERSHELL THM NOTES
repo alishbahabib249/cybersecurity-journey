@@ -1,0 +1,225 @@
+🌊 What is PowerShell (in simple words)?
+
+Think of PowerShell as a supercharged version of Command Prompt (CMD).
+
+CMD = basic commands (simple, text only)
+PowerShell = advanced + smarter + more powerful
+
+👉 It helps you:
+
+Control your computer
+Automate tasks (do things automatically)
+Write scripts (like small programs)
+🧠 The Big Idea (MOST IMPORTANT)
+
+👉 PowerShell works with "objects" instead of plain text
+
+What does that even mean?
+🔹 CMD (old way):
+Gives output as plain text
+
+Example:
+
+dir
+
+Output = just text (you can't easily manipulate it)
+
+🔹 PowerShell (new way):
+Gives output as objects (data with structure)
+
+Think of an object like this:
+
+File:
+  Name = notes.txt
+  Size = 2KB
+  Type = Text File
+
+👉 This means:
+
+You can filter it
+Sort it
+Modify it easily
+
+💡 That’s why it's called:
+👉 Object-Oriented
+
+🧩 Answer to your question
+
+What do we call the advanced approach used to develop PowerShell?
+
+👉 Object-Oriented
+
+🧰 What is PowerShell made of?
+
+PowerShell is actually 3 things combined:
+
+🖥️ Command-line tool (like CMD)
+📜 Scripting language (you can write scripts)
+⚙️ Automation tool (do repetitive tasks automatically)
+🧱 PowerShell Commands (called cmdlets)
+
+PowerShell commands follow a pattern:
+
+👉 Verb-Noun
+
+Examples:
+
+Command	Meaning
+Get-Content	Read a file
+Set-Location	Change folder
+Get-Command	Show all commands
+
+💡 Easy trick:
+
+Get = read
+Set = change
+New = create
+Remove = delete
+🔄 CMD vs PowerShell (simple comparison)
+Feature	CMD	PowerShell
+Output	Text	Objects
+Power	Basic	Advanced
+Commands	dir, echo	Get-ChildItem, Write-Output
+Automation	Limited	Very powerful
+🚀 How to open PowerShell
+
+Easy ways:
+
+Press Windows + R, type:
+
+powershell
+Search “PowerShell” in Start Menu
+
+Open CMD and type:
+
+powershell
+🔐 Why PowerShell matters in Cybersecurity
+
+As a beginner in cybersecurity, this is HUGE:
+
+👉 You’ll use PowerShell to:
+
+Check system info
+Find users and permissions
+Automate tasks
+Detect vulnerabilities
+Run scripts during penetration testing
+
+💡 Hackers AND defenders both use it.
+
+🧠 Final Simple Analogy
+CMD = calculator 🧮
+PowerShell = full computer 💻
+
+
+📁 Navigating Files in PowerShell (Beginner Level)
+
+Think of your computer like a folder system (files inside folders).
+
+PowerShell gives you commands (cmdlets) to:
+
+See files
+Move between folders
+Create/delete files
+Read file content
+🔑 Basic Commands (Super Important)
+📂 1. View files in a folder
+Get-ChildItem
+
+👉 Same as:
+
+dir (CMD)
+ls (Linux)
+
+💡 Meaning:
+
+“Show me everything inside this folder”
+
+📍 2. Move between folders
+Set-Location C:\Users
+
+👉 Same as:
+
+cd
+
+💡 Meaning:
+
+“Go to this directory”
+
+🆕 3. Create file or folder
+New-Item test.txt
+
+💡 Meaning:
+
+“Create something new”
+
+❌ 4. Delete file/folder
+Remove-Item test.txt
+
+💡 Meaning:
+
+“Delete this”
+
+📖 5. Read file content
+Get-Content file.txt
+
+👉 Same as:
+
+type (CMD)
+cat (Linux)
+🧠 Your Questions Explained
+❓ What replaces type?
+
+👉 ✅ Get-Content
+
+Because:
+
+It reads file content (same job as type)
+
+❓ How to show contents of C:\Users?
+
+👉 ✅
+
+Get-ChildItem -Path C:\Users
+
+💡 Why?
+
+Get-ChildItem → list files
+-Path → where to look
+❓ Why answer = 4 items?
+
+👉 That’s from the lab environment
+
+Meaning:
+
+That specific folder had 4 items inside
+
+⚠️ On your PC, it might be different.
+
+🔗 Piping (MOST IMPORTANT CONCEPT)
+
+This is where PowerShell becomes 🔥 powerful.
+
+👉 Symbol:
+|
+
+💡 Meaning:
+
+“Take output of first command → send it to next command”
+
+🔍 Example:
+Get-ChildItem | Where-Object Extension -eq .txt
+Step-by-step:
+Get-ChildItem → gets all files
+| → pass them forward
+Where-Object → filter them
+Extension -eq .txt → only .txt files
+
+👉 Final meaning:
+
+“Show only .txt files”
+
+🧠 Filtering (VERY IMPORTANT)
+🔹 Where-Object
+
+Used to filter data
