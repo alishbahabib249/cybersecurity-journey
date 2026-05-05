@@ -1,0 +1,22 @@
+When working with Nmap, you have different options depending on what you want to do. 
+If you just want to see which targets exist without scanning them, you use -sL, 
+which simply lists all possible targets. To find which hosts are actually online, 
+you use -sn, which performs host discovery only. Once you know the hosts, 
+you can start port scanning: -sT performs a full TCP connection (complete handshake), 
+while -sS is a stealthier SYN scan that only sends the first step of the handshake.
+If you want to scan UDP services, you use -sU. To make scans faster, 
+-F checks only the 100 most common ports, while -p lets you specify exactly which ports to scan (for example, 
+-p- scans all ports). If a host appears down but you still want to scan it, you can force it using -Pn.
+
+For deeper analysis, Nmap also supports service and system detection. 
+The -O option tries to identify the operating system, -sV detects service versions, 
+and -A enables aggressive scanning, combining OS detection, version detection, and additional features. 
+To control scan speed and behavior, you can use timing options like -T0 to -T5, ranging from very slow and stealthy to 
+extremely fast and noisy. You can also fine-tune performance using options like --min-parallelism and --max-parallelism 
+(how many probes run at once), --min-rate and --max-rate (packets per second), and --host-timeout
+(how long to wait for a host before skipping it).
+
+While the scan is running, you can control how much information you see. 
+The -v option increases verbosity (for example, -vv shows more details), and -d enables debugging output for deeper technical insight.
+Finally, you can save your results in different formats: -oN saves normal readable output, -oX saves XML format for tools,
+-oG creates grep-friendly output for command-line filtering, and -oA is the best option as it saves all formats at once.
